@@ -34,6 +34,13 @@ var readText = File.ReadAllText("test.txt");
 decimal price = 1000000;
 Console.WriteLine(price.ToString("n0"));
 
+decimal amount = 90000.00m;
+// The 'm' suffix indicates that the literal is of type 'decimal'. Without it, the value would default to 'double',
+// and the compiler would throw an error because 'double' cannot be implicitly converted to 'decimal'.
+// The 'decimal' type is often used for financial calculations due to its high precision and avoidance of rounding errors.
+
+double amount2 = 90000.00;
+
 DateTime now = DateTime.Now;
 Console.WriteLine(now.ToString("yyyy-MM-dd"));
 
