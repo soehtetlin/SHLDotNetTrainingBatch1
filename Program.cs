@@ -47,7 +47,11 @@ public interface IResume
 }
 
 
-
+public class ResumeV2 : IResume
+{
+	public string Name { get; set; }
+	public int Age { get; set; }
+}
 
 public class Resume : IResume {
 	public string Name { get; set; }
