@@ -1,96 +1,47 @@
-﻿Console.WriteLine("Hello, World!");
-Console.ReadLine();
+﻿using SHLDotNetTrainingBatch1;
 
-int[] a = { };
-var res = a.FirstOrDefault();
-Console.WriteLine(res);
+BeforeSystem:
 
-int[] numbers = { 1, 2, 3, 4, 5 };
+Console.WriteLine("Inventory Management System");
 
-var result = numbers.FirstOrDefault();
+Console.WriteLine("1. Create Product");
+Console.WriteLine("2. View Products");
+Console.WriteLine("3. Update Product");
+Console.WriteLine("4. Delete Product");
+Console.WriteLine("5. Exit");
 
-result = numbers.Sum();
+Console.Write("Select an option: ");
+int option = int.Parse(Console.ReadLine()!);
 
-Console.WriteLine(result);
+InventoryService inventoryService = new InventoryService();
 
-foreach (var number in numbers)
+switch (option)
 {
-	if (number % 2 == 0)
-	{
-		Console.WriteLine(number);
-	}
+	case 1:
+		Console.WriteLine("Create Product");
+		inventoryService.CreateProduct();
+		break;
+	case 2:
+		Console.WriteLine("View Products");
+		inventoryService.ViewProducts();
+		break;
+	case 3:
+		Console.WriteLine("Update Product");
+		inventoryService.UpdateProduct();
+		break;
+	case 4:
+		Console.WriteLine("Delete Product");
+		inventoryService.DeleteProduct();
+		break;
+	case 5:
+		Console.WriteLine("Exiting...");
+		goto Exit;
+	default:
+		Console.WriteLine("Invalid option. Please try again.");
+		break;
 }
 
-var lst = numbers.Where(x => x % 2 == 0);
-foreach (var number in lst)
-{
-	Console.WriteLine(number);
-}
+goto BeforeSystem;
 
-File.WriteAllText("test.txt", "Hello World Testing");
-
-var readText = File.ReadAllText("test.txt");
-
-decimal price = 1000000;
-Console.WriteLine(price.ToString("n0"));
-
-decimal amount = 90000.00m;
-// The 'm' suffix indicates that the literal is of type 'decimal'. Without it, the value would default to 'double',
-// and the compiler would throw an error because 'double' cannot be implicitly converted to 'decimal'.
-// The 'decimal' type is often used for financial calculations due to its high precision and avoidance of rounding errors.
-
-double amount2 = 90000.00;
-
-DateTime now = DateTime.Now;
-Console.WriteLine(now.ToString("yyyy-MM-dd"));
-
-IResume resume = new Resume();
-resume = new Resume();
-
-public interface IResume
-{ 
-
-
-}
-
-
-public class ResumeV2 : IResume
-{
-	public string Name { get; set; }
-	public int Age { get; set; }
-}
-
-public class Resume : IResume {
-	public string Name { get; set; }
-	public int Age { get; set; }
-}
-
-interface ITransfer
-{
-	void Create();
-	void Update();
-	void Delete();
-	void Read();
-
-}
-
-public class KPay : ITransfer
-{
-	public void Create()
-	{
-		Console.WriteLine("KPay Create");
-	}
-	public void Update()
-	{
-		Console.WriteLine("KPay Update");
-	}
-	public void Delete()
-	{
-		Console.WriteLine("KPay Delete");
-	}
-	public void Read()
-	{
-		Console.WriteLine("KPay Read");
-	}
-}
-
+Exit:
+Console.ReadKey();
