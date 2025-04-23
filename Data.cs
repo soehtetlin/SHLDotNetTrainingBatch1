@@ -8,7 +8,7 @@ namespace SHLDotNetTrainingBatch1
 {
 	internal static class Data
 	{
-		public static int ProductId = 2;
+		public static int ProductId = 4;
 		public static List<Product> Products = new List<Product>()
 		{
 			new Product(1, "P001", "Apple", 3000m, 100, "Fruit"),
@@ -16,6 +16,5 @@ namespace SHLDotNetTrainingBatch1
 			new Product(3, "P003", "Orange", 2000, 200, "Fruit"),
 			new Product(4, "P004", "Mango", 5000, 50, "Fruit"),
 		};
-		//public static Product[] Products2 = new Product[100];
 	}
 }
