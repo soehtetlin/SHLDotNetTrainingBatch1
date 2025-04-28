@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35931.197 d17.13
+VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SHLDotNetTrainingBatch1", "SHLDotNetTrainingBatch1.csproj", "{8A7162AE-FCCC-481B-B766-366BC436F371}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SHLDotNetTrainingBatch1.ConsoleApp2", "..\SHLDotNetTrainingBatch1.ConsoleApp2\SHLDotNetTrainingBatch1.ConsoleApp2.csproj", "{CC515CE0-F191-4B27-A98A-DF92D64318EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{8A7162AE-FCCC-481B-B766-366BC436F371}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A7162AE-FCCC-481B-B766-366BC436F371}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A7162AE-FCCC-481B-B766-366BC436F371}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC515CE0-F191-4B27-A98A-DF92D64318EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC515CE0-F191-4B27-A98A-DF92D64318EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC515CE0-F191-4B27-A98A-DF92D64318EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC515CE0-F191-4B27-A98A-DF92D64318EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
