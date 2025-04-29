@@ -151,16 +151,15 @@ namespace SHLDotNetTrainingBatch1.ConsoleApp2
 			Console.Write("Enter GitHubRepoLink: ");
 			string githubRepoLink = Console.ReadLine()!;
 
-			SqlConnection updateConnection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
 			connection.Open();
 
-			string updateQuery = $@"
+			query = $@"
 									UPDATE [dbo].[Tbl_Homework]
 									   SET [Name] = @Name
 										  ,[GitHubUserName] = @GitHubUserName 
 										  ,[GitHubRepoLink] = @GitHubRepoLink
 									 WHERE No = @Id";
-			SqlCommand updateCmd = new SqlCommand(query, connection);
+			cmd = new SqlCommand(query, connection);
 			cmd.Parameters.AddWithValue("@Id", id);
 			cmd.Parameters.AddWithValue("@Name", name);
 			cmd.Parameters.AddWithValue("@GitHubUserName", githubUserName);
@@ -173,29 +172,53 @@ namespace SHLDotNetTrainingBatch1.ConsoleApp2
 
 		public void Delete()
 		{
-			Console.Write("Enter Id: ");
+		BeforeInputId:
+			Console.Write("Enter the id you want to delete: ");
 			string inputId = Console.ReadLine()!;
 			int id = 0;
 			bool isInt = int.TryParse(inputId, out id);
 			if (!isInt)
 			{
 				Console.WriteLine("Invalid Id.");
-				return;
+				goto BeforeInputId;
 			}
 
-			Console.Write("Are you sure to delete this id? (y/n): ");
-			string confirm = Console.ReadLine()!;
-			if (confirm is "y")
+			SqlConnection connection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
+			connection.Open();
+			string query = $"select * from Tbl_Homework where No = @Id";
+			SqlCommand cmd = new SqlCommand(query, connection);
+			cmd.Parameters.AddWithValue("@Id", id);
+			SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+			DataTable dt = new DataTable();
+			adapter.Fill(dt);
+			connection.Close();
+			if (dt.Rows.Count > 0)
 			{
-				SqlConnection connection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
-				connection.Open();
-				string query = $"delete from Tbl_Homework where No = @Id";
-				SqlCommand cmd = new SqlCommand(query, connection);
-				cmd.Parameters.AddWithValue("@Id", id);
-				int result = cmd.ExecuteNonQuery();
-				connection.Close();
-				Console.WriteLine("Deleted Successfully.");
-			}			
+				Console.Write("Are you sure to delete this id? (y/n): ");
+				string confirm = Console.ReadLine()!;
+				if (confirm is "y")
+				{
+					connection.Open();
+					query = $"delete from Tbl_Homework where No = @Id";
+					cmd = new SqlCommand(query, connection);
+					cmd.Parameters.AddWithValue("@Id", id);
+					int result = cmd.ExecuteNonQuery();
+					if (result > 0) {
+						Console.WriteLine("Deleted Successfully.");
+					}
+					else
+					{
+						Console.WriteLine("Failed to delete.");
+					}
+					connection.Close();
+					Console.ReadLine();
+				}
+			}
+			else
+			{
+				Console.WriteLine("No record found.");
+				goto BeforeInputId;
+			}					
 		}
 
 		public void Login()
